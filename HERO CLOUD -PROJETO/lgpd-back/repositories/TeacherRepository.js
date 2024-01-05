@@ -1,46 +1,45 @@
-import Teacher from "../models/Teacher.js"
+import Teacher from "../models/Teacher.js";
 
-const saveTeacher = async (TeacherModel) => {
-    const save = await Teacher.create(TeacherModel);
+const saveTeacher = async (teacherModel) => {
+    const save = await Teacher.create(teacherModel);
     return save;
 }
 
 const getAllTeachers = async () => {
-    return await Teacher.findAll({
-        order: [
-            ['id', 'ASC']
-        ]
-    }
-    );
+  return await Teacher.findAll({
+    order: [
+      ['id', 'ASC']
+    ]
+  });
 };
 
-const getTeachersById = async (id) => {
-    return await Teacher.findByPk(id);
+const getTeacherById = async (id) => {
+  return await Teacher.findByPk(id);
 };
 
-const deleteTeachersById = async (id) => {
-    return await Teacher.destroy({ where: { id } });
+const deleteTeacherById = async (id) => {
+  return await Teacher.destroy({ where: { id: id } });
 };
 
 const updateTeacherById = async (id, TeacherModel) => {
-    try {
-        const result = await Teacher.update(TeacherModel, {where: { id: id }});
-        if (result[0] === 1) {
-            return { message: "teacher update with success" };
-        } else {
-            return { message: "can not find ${id} to update ", status: 404 };
-        }
-    } catch (error) {
-        console.error();
+  try {
+    const result = await Teacher.update(TeacherModel, { where: { id: id } });
+    if (result[0] === 1) {
+      return { message: "Teacher updated with success" };
+    } else {
+      return { message: `Can't find Teacher ${id} to update`, status: 404 };
     }
+  } catch (error) {
+    return error;
+  }
 };
 
 const factory = {
     saveTeacher,
     getAllTeachers,
-    getTeachersById,
-    deleteTeachersById,
+    getTeacherById,
+    deleteTeacherById,
     updateTeacherById
-}
+  };
 
 export default factory;

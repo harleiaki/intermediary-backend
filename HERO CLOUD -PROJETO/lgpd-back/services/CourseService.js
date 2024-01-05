@@ -1,4 +1,4 @@
-import courseRepository from "../repositories/CourseRepository.js"
+import courseRepository from "../repositories/CourseRepository.js";
 
 const saveCourse = (courseModel) => {
     return courseRepository.saveCourse(courseModel);
@@ -22,10 +22,11 @@ const updateCourseById = (id, courseModel) => {
 
 const service = {
     saveCourse,
-    getAllCourses,
     getCourseById,
+    getAllCourses,
     deleteCourseById,
     updateCourseById
 }
+
 
 export default service;

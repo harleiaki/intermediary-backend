@@ -1,4 +1,4 @@
-import evaluationRepository from "../repositories/EvaluationRepository.js"
+import evaluationRepository from "../repositories/EvaluationRepository.js";
 
 const saveEvaluation = (evaluationModel) => {
     return evaluationRepository.saveEvaluation(evaluationModel);
@@ -22,10 +22,11 @@ const updateEvaluationById = (id, evaluationModel) => {
 
 const service = {
     saveEvaluation,
-    getAllEvaluations,
     getEvaluationById,
+    getAllEvaluations,
     deleteEvaluationById,
     updateEvaluationById
 }
+
 
 export default service;

@@ -1,4 +1,4 @@
-import userRepository from "../repositories/UserRepository.js"
+import userRepository from "../repositories/UserRepository.js";
 
 const saveUser = (userModel) => {
     return userRepository.saveUser(userModel);
@@ -25,7 +25,8 @@ const service = {
     getUserById,
     getAllUsers,
     deleteUserById,
-    updateUserById,
+    updateUserById
 }
+
 
 export default service;

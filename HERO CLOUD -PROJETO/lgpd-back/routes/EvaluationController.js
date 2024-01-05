@@ -1,18 +1,16 @@
 import express from "express";
-let router = express.Router();
-
 import evaluationService from "../services/EvaluationService.js";
 
-router.post("/addEvaluation", async function (req, res) {
-    const evaluationModel = {
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email: req.body.email,
-        gender: req.body.gender
-    }
+let router = express.Router();
 
-    const evaluation = await evaluationService.saveEvaluation(evaluationModel);
-    return res.status(200).json(evaluation);
+router.post("/addEvaluation", function (req, res) {
+    const evaluationModel = {
+        user_id: req.body.user_id,
+        course_id: req.body.course_id,
+        concept: req.body.concept
+    }
+    const evaluation = evaluationService.saveEvaluation(evaluationModel);
+    return res.status(201).json(evaluation);
 });
 
 router.get("/getAllEvaluations", async function (req, res) {
@@ -32,13 +30,12 @@ router.delete("/deleteEvaluation/:id", async function (req, res) {
 
 router.put("/updateEvaluation/:id", async function (req, res) {
     const evaluationModel = {
-        first_name: req.body.first_name,
-        last_name: req.body.last_name,
-        email: req.body.email,
-        gender: req.body.gender
-    }
+        user_id: req.body.user_id,
+        course_id: req.body.course_id,
+        concept: req.body.concept
+    };
 
-    const evaluation = await evaluationService.updateEvaluationByIdEvaluation(req.params.id, evaluationModel);
+    const evaluation = await evaluationService.updateEvaluationById(req.params.id, evaluationModel);
     return res.status(200).json(evaluation);
 });
 
